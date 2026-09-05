@@ -4606,6 +4606,7 @@ static int do_multi(int multi, int size_num,
                 tk = sstrsep(&p, sep);
                 if (strtoint(tk, 0, OSSL_NELEM(rsa_results), &k)) {
                     sstrsep(&p, sep);
+                    rsa_doit[k]++;
 
                     d = atof(sstrsep(&p, sep));
                     rsa_results[k][0] += d;
@@ -4618,8 +4619,6 @@ static int do_multi(int multi, int size_num,
 
                     d = atof(sstrsep(&p, sep));
                     rsa_results[k][3] += d;
-
-                    rsa_doit[k]++;
                 }
 #ifndef OPENSSL_NO_DSA
             } else if (CHECK_AND_SKIP_PREFIX(p, "+F3:")) {
